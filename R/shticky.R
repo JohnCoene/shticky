@@ -29,7 +29,7 @@ use_shticky <- function() {
 #' @note \code{selector} is a valid CSS selector i.e.: \code{#id} or \code{.class}.
 #' 
 #' @export
-Shitck <- R6::R6Class(
+Shtick <- R6::R6Class(
   "Shtick",
   public = list(
     initialize = function(selector){

@@ -41,7 +41,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  shtick <- Shitck$
+  shtick <- Shtick$
     new("#stick")$
     shtick()
 
