@@ -9,6 +9,17 @@ Make 'Shiny' element *shticky*.
 remotes::install_github("JohnCoene/shticky")
 ```
 
+## How-to
+
+1. Initialise shticky shtuff with the `new` method.
+2. Make the element shticky with `shticky`.
+3. Unshtick the element with the `unshtick` method.
+
+Note that the `new` method takes a CSS selector, i.e.: `#id` or `.class`. There are also two callbacks to check wheter the element is shtuck.
+
+* `input$shtuck` - fired when shtuck
+* `input$unshtuck` - fired when unshtuck.
+
 ## Example
 
 ``` r
