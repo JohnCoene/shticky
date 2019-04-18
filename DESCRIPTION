@@ -1,0 +1,15 @@
+Package: shticky
+Title: Make 'Shiny' Elements Stick
+Version: 0.0.1
+Authors@R: 
+    person(given = "John",
+           family = "Coene",
+           role = c("aut", "cre"),
+           email = "jcoenep@gmail.com")
+Description: Provides an easy way to attach elements to a 'Shiny' app when the user scrolls such that the element is always visible. .
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    shiny
+RoxygenNote: 6.1.1
