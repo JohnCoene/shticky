@@ -1,6 +1,6 @@
 # shticky
 
-Make 'Shiny' element sticky.
+Make 'Shiny' element *shticky*.
 
 ## Installation
 
