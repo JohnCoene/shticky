@@ -1,6 +1,6 @@
 # shticky
 
-<img src="./man/figures/logo.png" style="max-height:180px;" align="left" />
+<img src="./man/figures/logo.png" style="max-height:120px;" align="right" />
 
 Make 'Shiny' element *shticky*.
 
