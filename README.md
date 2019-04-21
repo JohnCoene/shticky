@@ -1,5 +1,7 @@
 # shticky
 
+<img src="./man/figures/logo.png" style="max-height:180px;" align="left" />
+
 Make 'Shiny' element *shticky*.
 
 ## Installation
