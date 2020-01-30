@@ -9,7 +9,6 @@
 use_shticky <- function() {
   singleton(
     tags$head(
-      tags$script(src = "shticky-shtuff/jquery.sticky-kit.min.js"),
       tags$script(src = "shticky-shtuff/shticky.js")
     )
   )
