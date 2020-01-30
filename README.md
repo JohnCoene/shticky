@@ -2,7 +2,7 @@
 
 <img src="./man/figures/logo.png" height="180px" align="right" />
 
-Make 'Shiny' element *shticky*.
+Make 'Shiny' element shticky.
 
 ## Installation
 
