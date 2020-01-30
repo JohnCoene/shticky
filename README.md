@@ -17,10 +17,7 @@ remotes::install_github("JohnCoene/shticky")
 2. Make the element shticky with `shticky`.
 3. Unshtick the element with the `unshtick` method.
 
-Note that the `new` method takes a CSS selector, i.e.: `#id` or `.class`. There are also two callbacks to check wheter the element is shtuck.
-
-* `input$shtuck` - fired when shtuck
-* `input$unshtuck` - fired when unshtuck.
+Note that the `new` method takes an `id`.
 
 ## Example
 
@@ -36,20 +33,15 @@ ui <- fluidPage(
   use_shticky(),
   h1(id = "stick", "SHTICKY"),
   longdiv(),
-  longdiv(
-    verbatimTextOutput("sticky")
-  ),
-  actionButton("unstick", "UNSHTICK")
+  longdiv(),
+  actionButton("unstick", "UNSHTICK"),
+  longdiv(),
 )
 
 server <- function(input, output, session) {
   shtick <- Shtick$
-    new("#stick")$
-    shtick()
-
-  output$sticky <- renderPrint({
-    input$shtuck
-  })
+    new("stick")$
+    shtick(top = 200)
 
   observeEvent(input$unstick, {
     shtick$unshtick()

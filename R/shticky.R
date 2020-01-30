@@ -10,7 +10,7 @@ use_shticky <- function() {
   singleton(
     tags$head(
       tags$script(src = "shticky-shtuff/jquery.sticky-kit.min.js"),
-      tags$script(src = "shticky-shtuff/sticky.js")
+      tags$script(src = "shticky-shtuff/shticky.js")
     )
   )
 }
@@ -31,36 +31,46 @@ use_shticky <- function() {
 #' @export
 Shtick <- R6::R6Class(
   "Shtick",
+#' @details Initialize Shticky
+#' 
+#' @param id CSS id of element to make shticky.
   public = list(
-    initialize = function(selector){
-      private$selector <- selector
+    initialize = function(id){
+      if(missing(id))
+        stop("Missing `id`", call. = FALSE)
+
+      # for backward compatibility
+      id <- gsub("^#", "", id)
+      private$id <- id
       invisible(self)
     },
-    shtick = function(inner_scrolling = TRUE, sticky_class = "is_stuck", 
-      offset_top = 0, bottoming = TRUE, spacer = NULL){
+#' @details Sticks the element.
+#' 
+#' @param left,right,top,bottom Corresponds to CSS, if an integer it is treated as
+#' pixels, if a string is used as-is.
+    shtick = function(left = NULL, right = NULL, top = NULL, bottom = NULL){
       session <- private$get_session()
-      opts <- list(
-        selector = private$selector,
-        options = list(
-          inner_scrolling = inner_scrolling,
-          sticky_class = sticky_class,
-          offset_top = offset_top,
-          spacer = spacer,
-          bottoming = bottoming
-        )
-      )
+
+      options <- list()
+      if(!is.null(left)) options$left <- .parse_pos(left)
+      if(!is.null(right)) options$right <- .parse_pos(right)
+      if(!is.null(top)) options$top <- .parse_pos(top)
+      if(!is.null(bottom)) options$bottom <- .parse_pos(bottom)
+
+      opts <- list(id = private$id, options = options)
       session$sendCustomMessage("shtick", opts)
       invisible(self)
     },
+#' @details Unsticks the element.
     unshtick = function(){
       session <- private$get_session()
-      opts <- list(selector = private$selector)
+      opts <- list(id = private$id)
       session$sendCustomMessage("unshtick", opts) 
       invisible(self)
     }
   ),
   private = list(
-    selector = NULL,
+    id = NULL,
     get_session = function(){
       session <- shiny::getDefaultReactiveDomain()
       .check_session(session)
@@ -72,4 +82,11 @@ Shtick <- R6::R6Class(
 .check_session <- function(x){
   if(is.null(x))
     stop("invalid session, run this function inside your Shiny server.", call. = FALSE)
+}
+
+.parse_pos <- function(x){
+  if(inherits(x, "numeric"))
+    x <- paste0(x, "px")
+
+  return(x)
 }
